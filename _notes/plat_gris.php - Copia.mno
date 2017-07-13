@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsElecc" value="name:descripcion;datatype:blob,name:id_centro;datatype:int" />
+	<infoitem key="UD_rsRep" value="name:id_centro;datatype:int,name:descripcion;datatype:blob,name:elecc;datatype:string,name:psuv;datatype:real,name:Opos;datatype:real,name:otros;datatype:real" />
+	<infoitem key="UD_reCentr" value="name:id_centro;datatype:int,name:descripcion;datatype:blob,name:elecc;datatype:string,name:psuv;datatype:real,name:opos;datatype:real,name:otros;datatype:real,name:part;datatype:int,name:abst;datatype:int,name:tot;datatype:int,name:info;datatype:blob,name:asp_pol;datatype:blob,name:asp_soc;datatype:blob,name:fac_soc;datatype:blob,name:popol;datatype:blob" />
+	<infoitem key="UD_rsCentr2" value="name:id_centro;datatype:int,name:descripcion;datatype:blob,name:elecc;datatype:string,name:psuv;datatype:real,name:opos;datatype:real,name:otros;datatype:real,name:part;datatype:int,name:abst;datatype:int,name:tot;datatype:int,name:info;datatype:blob,name:asp_pol;datatype:blob,name:asp_soc;datatype:blob,name:fac_soc;datatype:blob,name:popol;datatype:blob" />
+	<infoitem key="UD_rsVotantes" value="name:votantes;datatype:int,name:milit;datatype:real" />
+	<infoitem key="UD_rsUbch" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:descripcion;datatype:string" />
+	<infoitem key="UD_rsClp" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string" />
+	<infoitem key="UD_rsosi" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:descripcion;datatype:string" />
+	<infoitem key="UD_rsTSCI" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:descripcion;datatype:string" />
+	<infoitem key="UD_rssosi" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:descripcion;datatype:string" />
+	<infoitem key="UD_rsSTSCI" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:descripcion;datatype:string" />
+	<infoitem key="UD_rsosiE" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:descripcion;datatype:string" />
+	<infoitem key="UD_rsCCV" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:descripcion;datatype:string" />
+	<infoitem key="UD_TSSIE" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:descripcion;datatype:string" />
+	<infoitem key="UD_supTSSIE" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:descripcion;datatype:string" />
+	<infoitem key="UD_supSOSIE" value="name:ced;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:descripcion;datatype:string" />
+</info>

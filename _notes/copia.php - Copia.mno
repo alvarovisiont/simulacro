@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsVotacion" value="name:id_centro;datatype:int,name:estado;datatype:string,name:municipio;datatype:string,name:parroquia;datatype:string,name:descripcion;datatype:blob" />
+	<infoitem key="UD_rsCentro" value="name:id_centro;datatype:int,name:estado;datatype:string,name:municipio;datatype:string,name:parroquia;datatype:string,name:descripcion;datatype:blob" />
+</info>

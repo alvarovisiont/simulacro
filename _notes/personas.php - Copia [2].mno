@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsPersonas" value="name:id_persona;datatype:int,name:id_op_reg;datatype:int,name:cedula;datatype:string,name:primer_nom;datatype:string,name:primer_ape;datatype:string,name:telefono_movil;datatype:string,name:id_centro_reg;datatype:int,name:id_op;datatype:int,name:operativo;datatype:blob,name:id_centro;datatype:int,name:estado;datatype:string,name:municipio;datatype:string,name:parroquia;datatype:string,name:descripcion;datatype:blob" />
+	<infoitem key="UD_rsOpe" value="name:id_op;datatype:int,name:operativo;datatype:blob" />
+	<infoitem key="UD_rsCentro" value="name:id_centro;datatype:int,name:estado;datatype:string,name:municipio;datatype:string,name:parroquia;datatype:string,name:descripcion;datatype:blob" />
+	<infoitem key="UD_rsRep" value="name:id;datatype:int,name:nac;datatype:string,name:cedula;datatype:int,name:nombre;datatype:string,name:fecha_nac;datatype:string,name:sexo;datatype:string,name:telefono;datatype:string,name:na;datatype:int,name:cod_cv;datatype:int" />
+</info>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsOpe" value="name:id_op;datatype:int,name:operativo;datatype:blob,name:activo;datatype:int" />
+	<infoitem key="UD_rsCentro" value="name:id_centro;datatype:int,name:estado;datatype:string,name:municipio;datatype:string,name:parroquia;datatype:string,name:descripcion;datatype:blob,name:info;datatype:blob,name:tipo;datatype:string,name:asp_pol;datatype:blob,name:asp_soc;datatype:blob,name:fac_soc;datatype:blob,name:popol;datatype:blob" />
+	<infoitem key="UD_rsPersonas" value="name:id_persona;datatype:int,name:cedula;datatype:string,name:nombre;datatype:string,name:telefono;datatype:string,name:operativo;datatype:blob" />
+	<infoitem key="UD_rsRep" value="name:id;datatype:int,name:nac;datatype:string,name:cedula;datatype:int,name:nombre;datatype:string,name:fecha_nac;datatype:string,name:sexo;datatype:string,name:telefono;datatype:string,name:na;datatype:int,name:cod_cv;datatype:int,name:cod_ubch;datatype:int,name:id_cargo_ubch;datatype:string,name:clp;datatype:int,name:cod_clp;datatype:int,name:m_psuv;datatype:int,name:m_cc;datatype:int" />
+	<infoitem key="UD_rsSector" value="name:id_sec;datatype:int,name:sectores;datatype:string" />
+	<infoitem key="UD_Recordset1" value="name:id_sec;datatype:int,name:sectores;datatype:string" />
+	<infoitem key="UD_rsUbch" value="name:id_cargo;datatype:string,name:descripcion;datatype:string,name:rng;datatype:int" />
+</info>

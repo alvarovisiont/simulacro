@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsPersonas" value="name:id_persona;datatype:int,name:id_op_reg;datatype:int,name:nacionalidad;datatype:string,name:cedula;datatype:string,name:primer_nom;datatype:string,name:primer_ape;datatype:string,name:telefono_movil;datatype:string,name:correo_elect;datatype:string,name:id_centro_reg;datatype:int,name:observaciones;datatype:blob" />
+</info>

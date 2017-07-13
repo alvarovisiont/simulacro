@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsRep" value="name:elecc;datatype:string,name:psuv;datatype:real,name:Opos;datatype:real,name:otros;datatype:real" />
+</info>

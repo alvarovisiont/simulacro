@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsRep" value="name:elecc;datatype:string,name:psuv;datatype:real,name:Opos;datatype:real,name:otros;datatype:real" />
+	<infoitem key="UD_rsElecc" value="name:id_elec;datatype:int,name:descrip;datatype:string" />
+	<infoitem key="UD_reCentr" value="name:parq;datatype:string,name:cod;datatype:int,name:centro;datatype:blob,name:psuv;datatype:int,name:opos;datatype:int,name:otros;datatype:int,name:part;datatype:int,name:abst;datatype:int,name:tot;datatype:int" />
+</info>

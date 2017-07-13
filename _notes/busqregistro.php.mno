@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsRep" value="name:id;datatype:int,name:nac;datatype:string,name:cedula;datatype:int,name:nombre;datatype:string,name:fecha_nac;datatype:string,name:sexo;datatype:string,name:telefono;datatype:string,name:id_sec;datatype:int,name:na;datatype:int,name:cod_cv;datatype:int,name:cod_ubch;datatype:int,name:id_cargo_ubch;datatype:string,name:clp;datatype:int,name:cod_clp;datatype:int,name:m_psuv;datatype:int,name:m_cc;datatype:int" />
+	<infoitem key="UD_rsRegist" value="name:id_persona;datatype:int,name:id_op_reg;datatype:int,name:nac;datatype:string,name:cedula;datatype:string" />
+</info>

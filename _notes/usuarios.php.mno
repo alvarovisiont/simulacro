@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsUsu" value="name:id_usu;datatype:int,name:nom_usu;datatype:string,name:ape_usu;datatype:string,name:log_usu;datatype:blob,name:cla_usu;datatype:string,name:nivel_usu;datatype:string" />
+</info>
