@@ -34,7 +34,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 ///Consulta para llenar la Tabla Princial
 mysql_select_db($database_conn_registro, $conn_registro);
-$query_rsUsu = "SELECT USUA.id_usu, USUA.log_usu, USUA.cla_usu, USUA.nivel_usu, (SELECT municipio from municipios where id_municipio = usua.id_mun_user and municipios.id_estado = 17) as municipio FROM simulacro.sim_users as USUA ORDER BY USUA.nivel_usu ASC";
+$query_rsUsu = "SELECT USUA.id_usu, USUA.log_usu, USUA.cla_usu, USUA.nivel_usu, (SELECT municipio from municipios where id_municipio = USUA.id_mun_user and municipios.id_estado = 17) as municipio FROM simulacro.sim_users as USUA ORDER BY USUA.nivel_usu ASC";
 $rsUsu = mysql_query($query_rsUsu, $conn_registro) or die(mysql_error());
 $row_rsUsu = mysql_fetch_assoc($rsUsu);
 $totalRows_rsUsu = mysql_num_rows($rsUsu);

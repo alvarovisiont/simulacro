@@ -176,14 +176,8 @@ $id_municipio = $_SESSION['MM_UserMun'];
         $("#barra_oculta").hide()
         aprueba = false
       }
-      else
-      {
-        $("#barra_oculta1").show('slow/400/fast')
-      } 
-
-      setTimeout(function(){
-        actualizar_registros()
-      },1500)
+      
+      actualizar_registros()
 
     }, 5000)
 

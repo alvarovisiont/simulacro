@@ -20,10 +20,14 @@ if($carnetpatria == 1)
 }
 
 $posicion_trabajoo = 2;
+$trabaja_gobierno = 0;
 
-if($trabaja_gobierno == 1)
+echo $sql = "SELECT * from posicion_trabajador where cedula = $cedula";
+$res = mysql_query($sql, $conn_registro);
+if(mysql_num_rows($res) > 0)
 {
-	$posicion_trabajoo = $posicion_trabajo;
+	$trabaja_gobierno = 1;
+	$posicion_trabajoo = mysql_result($res,0,'status');
 }
 
 $sql = "INSERT INTO sim_reg(nac, cedula, nombre, telefono, id_usuario,id_estado, id_mun, id_parro, id_op_reg, fecha, hora, estacion, carnet_patria, serial_carnet, trabaja_gobierno, posicion_trabajo, id_centro_v) 

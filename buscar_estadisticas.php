@@ -34,7 +34,7 @@
 
 	 				CASE posicion_trabajo
 	 					WHEN 2 THEN 'N/P'
-	 					WHEN 1 THEN 'Fijo'
+	 					WHEN 1 THEN 'Fijo/Jubilado/Pensionado'
 	 					WHEN 0 THEN 'Contratado'
 	 				end as posicion_trabajo,
 					 

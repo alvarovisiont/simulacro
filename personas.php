@@ -81,7 +81,7 @@ $totalRows_rsOpe = mysql_num_rows($rsOpe);
                 <div class="form-group"><!-- selectoperat -->
                 <label class="col-md-3 control-label input-sm" for="sop">Parroquia:</label>
                     <div class="col-lg-9">
-                      <select id="bqsop" name="id_parroquia"  onchange="document.getElementById('txparro').value=document.getElementById('bqsop').value" class="form-control input-sm" autofocus required>
+                      <select id="bqsop" name="id_parroquia"  onchange="buscar_centro(document.getElementById('bqsop').value, <?= $_SESSION['MM_UserMun']; ?>); document.getElementById('txparro').value=document.getElementById('bqsop').value" class="form-control input-sm" autofocus required>
                         <option value="" disabled selected>Seleccione...</option>
                         <?php 
                         do { 
@@ -98,8 +98,16 @@ $totalRows_rsOpe = mysql_num_rows($rsOpe);
                       </select>
                     </div>
                 </div>  
-                <div class="form-group"><!--txtcedula-->
-        <label class="col-md-3 control-label input-sm" for="txced">Cédula:</label> 
+              <div class="form-group" id="centro"><!-- selectoperat -->
+                <label class="col-md-3 control-label input-sm" for="sop">Centro de Votación:</label>
+                    <div class="col-lg-9">
+                      <select id="id_centro_v" name="id_centro_v" onchange="document.getElementById('txcentro').value=document.getElementById('id_centro_v').value" class="form-control input-sm" autofocus required>
+                        <option value="" ></option>
+                      </select>
+                  </div>
+              </div>                     
+              <div class="form-group"><!--txtcedula-->
+                <label class="col-md-3 control-label input-sm" for="txced">Cédula:</label> 
                 <div class="col-lg-9">
                     <div class="input-group">
                     <div class="input-group-btn">
@@ -128,15 +136,6 @@ $totalRows_rsOpe = mysql_num_rows($rsOpe);
         <input id="txcentro" name="id_centro_v" type="hidden">
       
 <div id="formu" style="display:none;">
-                
-                <div class="form-group" id="centro" style="display:none;"><!-- selectoperat -->
-                  <label class="col-md-3 control-label input-sm" for="sop">Centro de Votación:</label>
-                      <div class="col-lg-9">
-                        <select id="id_centro_v" name="id_centro_v" onchange="document.getElementById('txcentro').value=document.getElementById('id_centro_v').value" class="form-control input-sm" autofocus required>
-                          <option value="" disabled selected>Seleccione...</option>
-                        </select>
-                    </div>
-                </div>                     
 
                 <div id="txnomb" class="form-group"><!--txtnombre-->
                 <label class="col-md-3 control-label input-sm" for="txnom">Nombre Completo:</label>  
@@ -148,7 +147,7 @@ $totalRows_rsOpe = mysql_num_rows($rsOpe);
                 <div class="form-group"><!--txttelefono-->
                 <label class="col-md-3 control-label input-sm" for="txtel">Teléfono Móvil:</label>  
                     <div class="col-md-6">
-                        <input id="txtel" name="telefono" type="tel" pattern="[0-9]{11}" placeholder="####-###-##-##" required class="form-control input-sm" >
+                        <input type="number" id="txtel" name="telefono" type="tel" placeholder="####-###-##-##" required class="form-control input-sm" >
                     </div>  
                         
                 </div>    
@@ -177,41 +176,6 @@ $totalRows_rsOpe = mysql_num_rows($rsOpe);
                     </div>
                   </div>
                 </fieldset>
-
-                <div class="form-group">
-                  <label for="" class="col-md-3 control-label input-sm">Trabajador del Gobierno: </label>
-                  <div class="col-md-1">
-                    <label for="trabaja_gobierno1" class="radio-inline">
-                      <input type="radio" id="trabaja_gobierno1" name="trabaja_gobierno" value="1" required="">
-                      Si
-                    </label>
-                  </div>
-                  <div class="col-md-1">
-                    <label for="trabaja_gobierno2" class="radio-inline control-label">
-                      <input type="radio" id="trabaja_gobierno2" name="trabaja_gobierno" value="0" required="">
-                      No
-                    </label>
-                  </div>
-                </div>
-
-                <fieldset id="field_hide1" style="display: none">
-                  <div class="form-group">
-                    <label for="" class="col-md-3 control-label input-sm">Nivel: </label>
-                  <div class="col-md-2">
-                    <label for="posicion1" class="radio-inline">
-                      <input type="radio" id="posicion1" name="posicion_trabajo" value="1">
-                      Fijo
-                    </label>
-                  </div>
-                  <div class="col-md-2">
-                    <label for="posicion2" class="radio-inline control-label">
-                      <input type="radio" id="posicion2" name="posicion_trabajo" value="0">
-                      Contratado
-                    </label>
-                  </div>
-                  </div>
-                </fieldset>
-
                 <div class="modal-footer">
                   <div class="form-group"><!-- Button (Double) -->
                   <label class="col-md-3 control-label" for="buttonenviar"></label>
@@ -253,62 +217,48 @@ $(document).ready(function() {
   });  
 
 });  
-function busqcentro(){ 
 
-      document.getElementById('id_centro_v').innerHTML='';
+function buscar_centro(parro,muni)
+{
+  var parro = parro,
+      muni  = muni
 
-      var valparr = $('#bqsop').val();
 
-    htttml = '<option value="" selected> Seleccione Centro de Votación</option>'
-     
-         var consulta = $.ajax({
-            type:'POST',      
-            url:'_busqcentro.php',
-            data:{id_parroquia:valparr},
-            dataType:'JSON'     
-         }); 
- 
-         /* En caso de que se haya retornado bien.. */
-         consulta.done(function(data){
+      $.ajax({
+        url: '_busqcentro.php',
+        type: 'GET',
+        data: {mun: muni, parro: parro},
+        dataType: "JSON",
+        success: function(data)
+        {
+          var filas = "<option></option>"
+          $.grep(data,function(i,e){
+            
+            filas += '<option value="'+i.ctro_prop+'">'+i.nombre_centro+'</option>'
 
-             for (var i = data.length - 1; i >= 0; i--) {
-                    $.each( data[i] , function(k, v){
-                      cod_cv = data[i]['cod_cv']
-                      descripcion = data[i]['descripcion']                      
-                    });
-                    htttml += '<option value='+cod_cv+'>'+descripcion+'</option>'
-                };  
-               //$('#mun').show('slow/2000/fast');
-               $('#id_centro_v').html(htttml);
-               $('#centro').show('slow/2000/fast')
-               return true;
-            });
- 
-         /* Si la consulta ha fallado.. */
-         consulta.fail(function(){
-          alert('Seleccione Una Parroquia Válida')
-            return false;
+          })
 
-         });
-
-    }
+          $("#id_centro_v").html('').html(filas)
+        }
+      })
+}
 	 
-
-
    function busqREP(){ 
    
        /*$('#cliente').on("blur",'#nombre',function(){ 
          Obtenemos el valor del campo 
       var valor = this.value;*/
-      var nac = document.getElementById('txnac').value
+      var nac = document.getElementById('txnac').value,
+          ced = document.getElementById('txced').value,
+	        valsop = document.getElementById('sop').value,
+          centrov = document.getElementById('id_centro_v').value
 
-      var ced = document.getElementById('txced').value
-	     var valsop = document.getElementById('sop').value;
       /* Si la longitud del valor es mayor a 2 caracteres.. */
 	  
     var selop =  document.getElementById('bqsop').value;
 
-      if(ced != "" && selop != ""){ 
+      if(ced != "" && selop != "" && centrov != "")
+      { 
     
          $('#formu').hide('slow/2000/fast')
          $('#txtel').val('');
@@ -350,20 +300,10 @@ function busqcentro(){
       			   $('#exist').val('NoExiste');		   
       			   $('#txnom').attr('hidden',false);
                $('#txnom').attr('readonly',false);
-               
-               var filas = "<option></option>"
-               $.grep(data.centros, function(i,e){
-                  filas+= '<option value="'+i.ctro_prop+'">'+i.nombre_centro+'</option>'
-               })
-               $("#id_centro_v").html(filas)
-               $("#id_centro_v").prop('disabled', false)
-               $("#centro").show()
                 return false
             } 
 			     else 
            {
-               $("#centro").hide()
-               $("#id_centro_v").prop('disabled', true)
 
 			         $('#formu').show('slow/2000/fast')
               if(data.txnom!==undefined){ 
@@ -379,9 +319,22 @@ function busqcentro(){
                 }
 						  }
 
-              if(data.centro_v!==undefined){ 
-                $("#txcentro").val(data.centro_v)
-              }		   	
+              if(data.telefono != "")
+              {
+                $("#txtel").val(data.telefono)
+              }	   	
+
+              if(data.carnet == 1)
+              {
+                $('#carnet1').prop('checked',true)
+                $("#field_hide").show('slow/400/fast',function(e){
+                    $("#serial_carnet").prop('required',true)
+                })
+              }
+              else
+              {
+                $('#carnet2').prop('checked',true)
+              }
 
       			   $('#exist').val(data.exist);
       			   $('#estado').attr('style',"text-shadow:0 2px 2px rgba(0,0,0, .7)");
@@ -413,8 +366,9 @@ function busqcentro(){
          $('#estado').html('Debe Rellenar Todos los Campos...');
          return false;
       }
+  };
 
-      $('[name="carnetpatria"]').click(function(){
+  $('[name="carnetpatria"]').click(function(){
         var val = $(this).val()
         if(val == 1)
         {
@@ -429,24 +383,6 @@ function busqcentro(){
           }) 
         }
       })
-
-      $('[name="trabaja_gobierno"]').click(function(){
-        var val = $(this).val()
-        if(val == 1)
-        {
-          $("#field_hide1").show('slow/400/fast',function(e){
-              $('#posicion1').prop('required',true)
-          })
-        }
-        else
-        {
-          $("#field_hide1").hide('slow/400/fast',function(e){
-              $('#posicion1').prop('required',false)
-          }) 
-        }
-      })
-
- };
    
    </script>
 

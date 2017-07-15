@@ -73,7 +73,16 @@ if (isset($_POST['user'])) {
     if (isset($_SESSION['PrevUrl']) && false) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
     }
-    header("Location: " . $MM_redirectLoginSuccess );
+
+    if($_SESSION['MM_UserGroup'] == 'adm')
+    {
+      header("Location: " . 'ver_registros.php' );  
+    }
+    else
+    {
+      header("Location: " . 'personas.php' );   
+    }
+    
   }
   else {
     header("Location: ". $MM_redirectLoginFailed );

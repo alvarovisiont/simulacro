@@ -95,10 +95,9 @@ $('#formNuevo').submit(function() { //funcion de envio del formulario
 			   $('#estado').html('');
 			   $('#formu').hide('slow/2000/fast')   
 			   $("#formNuevo")[0].reset()
-			   $("#centro").hide().val('').change()
 			   $("#field_hide").hide()
 			   $("#field_hide1").hide()
-			   $("#id_centro_v").empty().prop('disabled',true)
+			   $("#bqced").val('')
 				
 			   } else { // si no confirmo cierro y actualizo la tabla
 				window.location.reload(false);// actualizo el cache

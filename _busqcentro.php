@@ -1,16 +1,19 @@
 <?php  
-require_once('Connections/conn_rep.php'); 
-require_once('_mquot.php'); 
-extract($_POST);
-mysql_select_db($database_conn_rep, $conn_rep);
-$sql = "SELECT * FROM nucleacion WHERE id_parroquia = '$id_parroquia'";
-$result = mysql_query($sql, $conn_rep) or die(mysql_error());
+
+require_once('Connections/conn_registro.php');
+
+mysql_select_db($database_conn_registro, $conn_registro);
+
+$sql = "SELECT ctro_prop, nombre_centro from centro_votaciones where estado = 17 and municipio = $_GET[mun] and parroquia = $_GET[parro]";
+
+$result = mysql_query($sql, $conn_registro) or die(mysql_error());
+
+$filas = [];
+
 while ($row = mysql_fetch_assoc($result)) {
   $filas[] = $row;
 }
 
-$return = $filas;
-
-die(json_encode($return)); 
+echo json_encode($filas);
 
 ?>
