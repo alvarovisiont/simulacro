@@ -186,14 +186,10 @@ $totalRows_rsNuevos = mysql_num_rows($rsNuevos);
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-registro-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="personas.php" style="text-shadow:0 2px 2px rgba(0,0,0, .7);">Personas &nbsp;&nbsp;<span style="float:right" class="glyphicon glyphicon-import"></span></a></li>
-                    <li><a href="operativos.php" style="text-shadow:0 2px 2px rgba(0,0,0, .7);">Operativos &nbsp;&nbsp;<span style="float:right" class="glyphicon glyphicon-flag"></span></a></li>
-
-                    <?php if ($_SESSION['MM_UserGroup']=="adm") {?>
-                    <?php } ?>
                 </ul>
                 <?php if ($_SESSION['MM_UserGroup']=="adm") {?>
                 <ul class="nav navbar-nav">
+                  <li><a href="operativos.php" style="text-shadow:0 2px 2px rgba(0,0,0, .7);">Operativos &nbsp;&nbsp;<span style="float:right" class="glyphicon glyphicon-flag"></span></a></li>
                   <li><a href="ver_registros.php" style="text-shadow:0 2px 2px rgba(0,0,0, .7);">Ver Registros &nbsp;&nbsp;<span style="float:right" class="glyphicon glyphicon-edit"></span></a></li>
                   <li><a href="vista_reporte.php" style="text-shadow:0 2px 2px rgba(0,0,0, .7);">Reportes &nbsp;&nbsp;<span style="float:right" class="glyphicon glyphicon-file"></span></a></li>
                 </ul>
@@ -210,6 +206,11 @@ $totalRows_rsNuevos = mysql_num_rows($rsNuevos);
                     </li>
                 </ul>
                 <?php } else {?>
+                <ul class="nav navbar-nav">
+                  <li><a href="personas.php" style="text-shadow:0 2px 2px rgba(0,0,0, .7);">Carga de Votantes &nbsp;&nbsp;<span style="float:right" class="glyphicon glyphicon-import"></span></a></li>
+                  <li><a href="formato_simulacro.pdf" target="_blank" style="text-shadow:0 2px 2px rgba(0,0,0, .7);">Descarga de Formato de Censo &nbsp;&nbsp;<span style="float:right" class="glyphicon glyphicon-file"></span></a></li>
+                  <li><a href="ver_registros.php" style="text-shadow:0 2px 2px rgba(0,0,0, .7);">Ver Registros &nbsp;&nbsp;<span style="float:right" class="glyphicon glyphicon-edit"></span></a></li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
 					<li><a href="<?php echo $logoutAction ?>" style="text-shadow:0 2px 2px rgba(0,0,0, .7);">Salir &nbsp;&nbsp;<span style="float:right" class="glyphicon glyphicon-log-out"></span></a></li>
 				</ul>

@@ -12,8 +12,22 @@ $estacion = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 
 mysql_select_db($database_conn_registro, $conn_registro);
 
-$sql = "INSERT INTO sim_reg(nac, cedula, nombre, telefono, id_usuario,id_estado, id_mun, id_parro, id_op_reg, fecha, hora, estacion, organizacion, sector, id_centro_v) 
-VALUES ('$nac', '$cedula', '$nombre', '$telefono', '$id_usuario',17, '$id_mun', '$id_parro', '$id_op_reg', '$fecha', '$hora', '$estacion', '$organizacion', '$sector', '$id_centro_v')";
+$serial = 0;
+
+if($carnetpatria == 1)
+{
+	$serial = $serial_carnet;
+}
+
+$posicion_trabajoo = 2;
+
+if($trabaja_gobierno == 1)
+{
+	$posicion_trabajoo = $posicion_trabajo;
+}
+
+$sql = "INSERT INTO sim_reg(nac, cedula, nombre, telefono, id_usuario,id_estado, id_mun, id_parro, id_op_reg, fecha, hora, estacion, carnet_patria, serial_carnet, trabaja_gobierno, posicion_trabajo, id_centro_v) 
+VALUES ('$nac', '$cedula', '$nombre', '$telefono', '$id_usuario',17, '$id_mun', '$id_parro', '$id_op_reg', '$fecha', '$hora', '$estacion', $carnetpatria,'$serial', '$trabaja_gobierno', '$posicion_trabajoo', '$id_centro_v')";
 
 mysql_query($sql, $conn_registro) or die(mysql_error());
 

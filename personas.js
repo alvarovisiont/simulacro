@@ -94,11 +94,11 @@ $('#formNuevo').submit(function() { //funcion de envio del formulario
 			   	
 			   $('#estado').html('');
 			   $('#formu').hide('slow/2000/fast')   
-			   		   
-			   $('#bqced,#exist,#txtapellido,#txtnombre,#txfech,#txtel,#txsex,#txfech').val('');
-			   $('#txtapellido,#txtnombre,#txfech,#txtel,#sCentro,#sSect,#txsex,#txfech,#sUbch,#sUbch_sel,#lbsCc,#lbsClp, #sClp_sel,#lbmpsuv,#lbmpob').addClass("alert-danger");				
-			   $("#centro").hide()
-			   $("#id_centro_v").empty().prop('disabled',false)
+			   $("#formNuevo")[0].reset()
+			   $("#centro").hide().val('').change()
+			   $("#field_hide").hide()
+			   $("#field_hide1").hide()
+			   $("#id_centro_v").empty().prop('disabled',true)
 				
 			   } else { // si no confirmo cierro y actualizo la tabla
 				window.location.reload(false);// actualizo el cache

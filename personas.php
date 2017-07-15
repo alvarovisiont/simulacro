@@ -153,19 +153,64 @@ $totalRows_rsOpe = mysql_num_rows($rsOpe);
                         
                 </div>    
 
-                <div class="form-group"><!--txtnombre-->
-                <label class="col-md-3 control-label input-sm" for="">Sector: </label>  
-                    <div class="col-lg-9">
-                        <input id="sector" name="sector" type="text" placeholder="Sector" class="form-control input-sm" required >
-                    </div>
-                </div>  
+                <div class="form-group">
+                  <label for="" class="col-md-3 control-label input-sm">Carnet de la Patria: </label>
+                  <div class="col-md-1">
+                    <label for="carnet1" class="radio-inline">
+                      <input type="radio" id="carnet1" name="carnetpatria" value="1" required="">
+                      Si
+                    </label>
+                  </div>
+                  <div class="col-md-1">
+                    <label for="carnet2" class="radio-inline control-label">
+                      <input type="radio" id="carnet2" name="carnetpatria" value="0" required="">
+                      No
+                    </label>
+                  </div>
+                </div>
 
-                <div class="form-group"><!--txtnombre-->
-                <label class="col-md-3 control-label input-sm" for="org_">Organización:</label>  
-                    <div class="col-lg-9">
-                        <input id="organizacion" name="organizacion" type="text" placeholder="Organización" class="form-control input-sm" required >
+                <fieldset id="field_hide" style="display: none">
+                  <div class="form-group">
+                    <label for="" class="col-md-3 control-label input-sm">Serial del Carnet: </label>
+                    <div class="col-md-6">
+                      <input type="text" id="seria_carnet" name="serial_carnet" pattern="[0-9]{10}" class="form-control input-sm">
                     </div>
-                </div>   
+                  </div>
+                </fieldset>
+
+                <div class="form-group">
+                  <label for="" class="col-md-3 control-label input-sm">Trabajador del Gobierno: </label>
+                  <div class="col-md-1">
+                    <label for="trabaja_gobierno1" class="radio-inline">
+                      <input type="radio" id="trabaja_gobierno1" name="trabaja_gobierno" value="1" required="">
+                      Si
+                    </label>
+                  </div>
+                  <div class="col-md-1">
+                    <label for="trabaja_gobierno2" class="radio-inline control-label">
+                      <input type="radio" id="trabaja_gobierno2" name="trabaja_gobierno" value="0" required="">
+                      No
+                    </label>
+                  </div>
+                </div>
+
+                <fieldset id="field_hide1" style="display: none">
+                  <div class="form-group">
+                    <label for="" class="col-md-3 control-label input-sm">Nivel: </label>
+                  <div class="col-md-2">
+                    <label for="posicion1" class="radio-inline">
+                      <input type="radio" id="posicion1" name="posicion_trabajo" value="1">
+                      Fijo
+                    </label>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="posicion2" class="radio-inline control-label">
+                      <input type="radio" id="posicion2" name="posicion_trabajo" value="0">
+                      Contratado
+                    </label>
+                  </div>
+                  </div>
+                </fieldset>
 
                 <div class="modal-footer">
                   <div class="form-group"><!-- Button (Double) -->
@@ -191,15 +236,9 @@ $totalRows_rsOpe = mysql_num_rows($rsOpe);
   <script src="js/select2_locale_es.js"></script>
   <script src="js/jquery.dataTables.min.js"></script>
   <script src="js/dataTables.bootstrap.js"></script>
-  <script src="js/dataTables.tableTools.min.js"></script>
-  <script src="js/dataTables.responsive.js"></script>
   <script src="js/dataTables.responsive.js"></script>
 </body>
 </html>
-
-
-
-
 
 <script>
  
@@ -317,6 +356,7 @@ function busqcentro(){
                   filas+= '<option value="'+i.ctro_prop+'">'+i.nombre_centro+'</option>'
                })
                $("#id_centro_v").html(filas)
+               $("#id_centro_v").prop('disabled', false)
                $("#centro").show()
                 return false
             } 
@@ -373,6 +413,38 @@ function busqcentro(){
          $('#estado').html('Debe Rellenar Todos los Campos...');
          return false;
       }
+
+      $('[name="carnetpatria"]').click(function(){
+        var val = $(this).val()
+        if(val == 1)
+        {
+          $("#field_hide").show('slow/400/fast',function(e){
+              $("#serial_carnet").prop('required',true)
+          })
+        }
+        else
+        {
+          $("#field_hide").hide('slow/400/fast',function(e){
+              $("#serial_carnet").prop('required',false)
+          }) 
+        }
+      })
+
+      $('[name="trabaja_gobierno"]').click(function(){
+        var val = $(this).val()
+        if(val == 1)
+        {
+          $("#field_hide1").show('slow/400/fast',function(e){
+              $('#posicion1').prop('required',true)
+          })
+        }
+        else
+        {
+          $("#field_hide1").hide('slow/400/fast',function(e){
+              $('#posicion1').prop('required',false)
+          }) 
+        }
+      })
 
  };
    

@@ -67,74 +67,75 @@ $id_municipio = $_SESSION['MM_UserMun'];
 
   <div class="row">
     <div class="container" id="ppal">
-      <div class="col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <button class="btn btn-block btn-success" data-toggle="modal" data-target="#mod_estadisticas">Ver estadísticas</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="panel panel-default">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 >Registros de Votantes</h3>
+            <h2 style="color: white;">Registros de Votantes&nbsp;<span class="glyphicon glyphicon-user"></span></h2>
           </div>
           <div class="panel-body">
-            <table class="table table-striped table-condensed" id="tabla">
-            <thead>
-              <tr>
-                <th class="text-center">Nac</th>
-                <th class="text-center">Céd</th>
-                <th class="text-center">Nombre</th>
-                <th class="text-center">Teléfono</th>
-                <th class="text-center">Fecha</th>
-                <th class="text-center">Municipio</th>
-                <th class="text-center">Parroquía</th>
-              </tr>
-            </thead>
-            <tbody class="text-center">
-                <?
-                    $sql = "SELECT *, 
-                    (SELECT parroquia from parroquias where id_estado = 17 and id_municipio = sim_reg.id_mun and id_parroquia = sim_reg.id_parro) as parroquia,
-                    (SELECT municipio from municipios where id_estado = 17 and id_municipio = sim_reg.id_mun) as municipio
-                     from sim_reg where id_estado = 17";
-
-                     $res = mysql_query($sql, $conn_registro);
-                     while ($rs = mysql_fetch_assoc($res))
-                     {
-                       echo '<tr>
-                              <td>'.$rs['nac'].'</td>
-                              <td>'.$rs['cedula'].'</td>
-                              <td>'.$rs['nombre'].'</td>
-                              <td>'.$rs['telefono'].'</td>
-                              <td>'.$rs['fecha'].'</td>
-                              <td>'.$rs['municipio'].'</td>
-                              <td>'.$rs['parroquia'].'</td>';
-                     }
-                ?>
-            </tbody>
-          </table>
+              <br>
+            <table class="table table-striped table-condensed" id="tabla_estadistica">
+              <thead>
+                <tr>
+                  <th class="text-center">Municipio</th>
+                  <th class="text-center">Votantes</th>
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                <tr>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <div class="col-md-6 col-md-offset-3" id="barra_oculta">
+              <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar"
+                       aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
+                       style="width: 100%">
+                       <span>Cargando...</span>
+                      <span class="sr-only">45% completado</span>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-md-offset-3" id="barra_oculta1" style="display: none">
+              <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar"
+                       aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
+                       style="width: 100%">
+                       <span>Actualizando...</span>
+                      <span class="sr-only">45% completado</span>
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
-        <br>
       </div>
-    </div>
-  </div>
-  <div class="modal fade" id="mod_estadisticas" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+          </div>
+        </div>
+  <div class="modal fade" id="modal_detalles" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: darkred; color: white;">
+            <div class="modal-header" style="background-color: #317eac; color: white;">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-              <h3 class="modal-title custom_align" id="Heading" style="color: white">Estadísticas por Municipios</h3>
+              <h3 class="modal-title custom_align" id="Heading" style="color: white">Detalle de Personas</h3>
             </div><!-- /.modal-header -->
             <div class="modal-body">
               <div class="row">
                 <div class="col-md-12">
-                  <table class="table table-striped table-hover" id="tabla_estadistica">
+                  <table class="table table-striped table-hover" id="tabla_personas">
                     <thead>
                       <tr>
-                        <th class="text-center">Municipio</th>
-                        <th class="text-center">Cantidad</th>
+                        <th class="text-center">Nac</th>
+                        <th class="text-center">Cédula</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Télefono</th>
+                        <th class="text-center">Carnet Patria</th>
+                        <th class="text-center">Serial Carnet</th>
+                        <th class="text-center">Trabajador Gobierno</th>
+                        <th class="text-center">Posición</th>
+                        <th class="text-center">Parroquía</th>
                       </tr>
                     </thead>
                     <tbody class="text-center">
@@ -149,41 +150,48 @@ $id_municipio = $_SESSION['MM_UserMun'];
         </div><!-- /.modal-footer -->
       </div><!-- /.modal-content -->    
   </div><!-- /.modal-Eliminar --> 
-    
+  
+  <script src="ver_registros.js"></script>  
   <script src="js/jquery-1.11.3.min.js"></script>
-  <script src="js/sweetalert2.min.js"></script>
   <script src="js/bootstrap.js"></script>
-  <script src="js/select2.js"></script>
-  <script src="js/select2_locale_es.js"></script>
   <script src="js/jquery.dataTables.min.js"></script>
   <script src="js/dataTables.bootstrap.js"></script>
-  <script src="js/dataTables.tableTools.min.js"></script>
-  <script src="js/dataTables.responsive.js"></script>
   <script src="js/dataTables.responsive.js"></script>
 </body>
 </html>
 <script>
   $(function(){
-    $("#tabla").dataTable({
+    
+    $("#tabla_estadistica").dataTable({
       language: {url: 'json/esp.json'}
     })
 
-    $("#mod_estadisticas").on('show.bs.modal', function(e){
+    var aprueba = true;
+    
 
-      $("#tabla_estadistica").DataTable().destroy()
+    setInterval(function(){
 
-      $("#tabla_estadistica").dataTable({
-        language: {url: 'json/esp.json'},
-        ajax :{
-          url: 'buscar_estadisticas.php',
-          type: 'GET',
-          "dataSrc" : ""
-        },
-        columns:[
-          {"data" : "municipio"},
-          {"data" : "cantidad"}
-        ]
-      })
+      if(aprueba)
+      {
+        $("#barra_oculta").hide()
+        aprueba = false
+      }
+      else
+      {
+        $("#barra_oculta1").show('slow/400/fast')
+      } 
+
+      setTimeout(function(){
+        actualizar_registros()
+      },1500)
+
+    }, 5000)
+
+    $("#modal_detalles").on('show.bs.modal', function(e){
+      
+      var municipio = $(e.relatedTarget).data().municipio
+      ver_detalles(municipio)
+
     })
   })
 </script>
