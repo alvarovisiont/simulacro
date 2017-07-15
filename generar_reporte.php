@@ -64,21 +64,46 @@ if (isset($pdf))
 			<table width="100%" cellpadding="" border="1" cellspacing="">
   			<thead>
   			<tr>
-    			<td colspan="8" style="font-size: 15px"><CENTER><strong style="text-decoration: underline;">Registro De Votantes</strong></CENTER></td>
+    			<td colspan="12" style="font-size: 15px"><CENTER><strong style="text-decoration: underline;">Registro De Votantes</strong></CENTER></td>
   			</tr>
 				<tr>
 					<th class="text-center">#</th>
 					<th class="text-center">Nac</th>
-          <th class="text-center">Céd</th>
-          <th class="text-center">Nombre</th>
-          <th class="text-center">Teléfono</th>
-          <th class="text-center">Fecha</th>
-          <th class="text-center">Municipio</th>
-          <th class="text-center">Parroquía</th>
+		          <th class="text-center">Céd</th>
+		          <th class="text-center">Nombre</th>
+		          <th class="text-center">Teléfono</th>
+		          <th class="text-center">Fecha</th>
+		          <th class="text-center">Carnet Patria</th>
+		          <th class="text-center">Serial</th>
+		          <th class="text-center">Trab.Gobierno</th>
+		          <th class="text-center">Posición Trabajo</th>
+		          <th class="text-center">Municipio</th>
+		          <th class="text-center">Parroquía</th>
 				</tr>
 			</thead>
 			<tbody>';
 				$sql = "SELECT *, 
+
+						  CASE carnet_patria
+		 					WHEN 0 THEN 'N/P'
+		 					ELSE 'Si'
+		 				end as carnet_patria,
+
+		 				CASE serial_carnet
+		 					WHEN 0 THEN 'N/P'
+		 					ELSE serial_carnet
+		 				end as serial_carnet,
+
+		 				CASE trabaja_gobierno
+		 					WHEN 0 THEN 'No'
+		 					ELSE 'Si'
+		 				end as trabaja_gobierno,
+
+		 				CASE posicion_trabajo
+		 					WHEN 2 THEN 'N/P'
+		 					WHEN 1 THEN 'Fijo'
+		 					WHEN 0 THEN 'Contratado'
+		 				end as posicion_trabajo,
 					      (SELECT parroquia from parroquias where id_estado = 17 and id_municipio = sim_reg.id_mun and id_parroquia = sim_reg.id_parro) as parroquia,
 					      (SELECT municipio from municipios where id_estado = 17 and id_municipio = sim_reg.id_mun) as municipio
 					       from sim_reg where id_estado = 17".$extra;
@@ -94,6 +119,10 @@ if (isset($pdf))
               <td>'.$rs['nombre'].'</td>
               <td>'.$rs['telefono'].'</td>
               <td>'.$rs['fecha'].'</td>
+              <td>'.$rs['carnet_patria'].'</td>
+              <td>'.$rs['serial_carnet'].'</td>
+              <td>'.$rs['trabaja_gobierno'].'</td>
+              <td>'.$rs['posicion_trabajo'].'</td>
               <td>'.$rs['municipio'].'</td>
               <td>'.$rs['parroquia'].'</td>
             </tr>';
